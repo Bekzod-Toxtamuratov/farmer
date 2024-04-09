@@ -16,7 +16,7 @@ export class AdminService {
   ) {}
   async getTokens(admin: AdminDocument) {
     const payload = {
-      id: admin.id,
+      id: admin._id,
       is_active: admin.is_active,
       is_creator: admin.is_creator,
     };
@@ -44,6 +44,7 @@ export class AdminService {
       throw new BadRequestException('Passwords do not match');
     }
     const hashed_password = await bcrypt.hash(password, 7);
+
     const newAdmin = await this.adminModel.create({
       ...createAdminDto,
       hashed_password,
@@ -71,10 +72,13 @@ export class AdminService {
   }
 
   update(id: string, updateAdminDto: UpdateAdminDto) {
-    return this.adminModel.findByIdAndUpdate(id, updateAdminDto);
+    const updatedData = this.adminModel.findByIdAndUpdate(id, updateAdminDto);
+
+    console.log(updatedData);
+    return updatedData;
   }
 
   remove(id: string) {
-    return this.adminModel.deleteOne({_id: id});
+    return this.adminModel.deleteOne({ _id: id });
   }
 }
