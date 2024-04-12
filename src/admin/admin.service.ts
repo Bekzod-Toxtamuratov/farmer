@@ -79,6 +79,8 @@ export class AdminService {
   }
 
   remove(id: string) {
+    // return this.adminModel.findByIdAndDelete(id); // bu ham delete qilishning 2-usuli hisoblanadi;
+
     return this.adminModel.deleteOne({ _id: id });
   }
 }

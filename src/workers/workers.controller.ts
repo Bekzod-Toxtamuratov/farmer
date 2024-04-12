@@ -1,34 +1,36 @@
-// import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-// import { WorkersService } from './workers.service';
-// import { CreateWorkerDto } from './dto/create-worker.dto';
-// import { UpdateWorkerDto } from './dto/update-worker.dto';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { CreateWorkerDto } from './dto/create-worker.dto';
+import { UpdateWorkerDto } from './dto/update-worker.dto';
+import { WorkersService } from './workers.service';
 
-// @Controller('workers')
-// export class WorkersController {
-//   constructor(private readonly workersService: WorkersService) {}
 
-//   @Post()
-//   create(@Body() createWorkerDto: CreateWorkerDto) {
-//     return this.workersService.create(createWorkerDto);
-//   }
+@Controller('workers')
+export class WorkersController {
+  constructor(private readonly workersService: WorkersService) {}
+//   constructor(private readonly specialityService: SpecialityService) {}
 
-//   @Get()
-//   findAll() {
-//     return this.workersService.findAll();
-//   }
+  @Post()
+  create(@Body() createWorkerDto: CreateWorkerDto) {
+    return this.workersService.create(createWorkerDto);
+  }
 
-//   @Get(':id')
-//   findOne(@Param('id') id: string) {
-//     return this.workersService.findOne(+id);
-//   }
+  @Get()
+  findAll() {
+    return this.workersService.findAll();
+  }
 
-//   @Patch(':id')
-//   update(@Param('id') id: string, @Body() updateWorkerDto: UpdateWorkerDto) {
-//     return this.workersService.update(+id, updateWorkerDto);
-//   }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.workersService.findOne(+id);
+  }
 
-//   @Delete(':id')
-//   remove(@Param('id') id: string) {
-//     return this.workersService.remove(+id);
-//   }
-// }
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateWorkerDto: UpdateWorkerDto) {
+    return this.workersService.update(+id, updateWorkerDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.workersService.remove(+id);
+  }
+}

@@ -11,24 +11,26 @@ export class SpecialityService {
     @InjectModel(Specially.name) private specModel: Model<Specially>,
   ) {}
 
-
   create(createSpecialityDto: CreateSpecialityDto) {
     return this.specModel.create(createSpecialityDto);
   }
 
   findAll() {
-    return `This action returns all speciality`;
+    return this.specModel.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} speciality`;
+    return this.specModel.findById(id);
   }
 
-  update(id: number, updateSpecialityDto: UpdateSpecialityDto) {
-    return `This action updates a #${id} speciality`;
+  update(id: string, updateAdminDto: UpdateSpecialityDto) {
+    const updatedData = this.specModel.findByIdAndUpdate(id, updateAdminDto);
+
+    console.log(updatedData);
+    return updatedData;
   }
 
   remove(id: number) {
-    return `This action removes a #${id} speciality`;
+    return this.specModel.deleteOne({ _id: id });
   }
 }

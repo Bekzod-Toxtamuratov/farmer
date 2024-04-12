@@ -1,38 +1,47 @@
-// import { Injectable } from '@nestjs/common';
-// import { CreateWorkerDto } from './dto/create-worker.dto';
-// import { UpdateWorkerDto } from './dto/update-worker.dto';
-// import { InjectModel } from '@nestjs/mongoose';
-// import { Model } from 'mongoose';
-// import { Specially } from '../speciality/schemas/speciality.schemas';
-// import { Worker } from './schemas/worker.schemas';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { CreateWorkerDto } from './dto/create-worker.dto';
+import { UpdateWorkerDto } from './dto/update-worker.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Specially } from '../speciality/schemas/speciality.schemas';
+import { Worker } from './schemas/worker.schemas';
 
-// @Injectable()
-// export class WorkersService {
-//   constructor(
-//     @InjectModel(Worker.name) private workerModel: Model<Worker>,
-//     @InjectModel(Specially.name) private speciallyModel: Model<Specially>,
-//   ) {}
+@Injectable()
+export class WorkersService {
+  constructor(
+    @InjectModel(Worker.name) private workerModel: Model<Worker>,
+    @InjectModel(Specially.name) private speciallyModel: Model<Specially>,
+  ) {}
 
-//   async create(createWorkerDto: CreateWorkerDto) {
-//     const { speciality_id } = createWorkerDto;
+  async create(createWorkerDto: CreateWorkerDto) {
+    const { speciality_id } = createWorkerDto;
 
-//     const spec = await this.speciallyModel.findById(speciality_id);
-//     return 'This action adds a new worker';
-//   }
+    const spec = await this.speciallyModel.findById(speciality_id);
 
-//   findAll() {
-//     return `This action returns all workers`;
-//   }
+    if (!spec) {
+      throw new BadRequestException("Bunday spec yo'q ");
+    }
 
-//   findOne(id: number) {
-//     return `This action returns a #${id} worker`;
-//   }
+    const worker = await this.workerModel.create(createWorkerDto);
 
-//   update(id: number, updateWorkerDto: UpdateWorkerDto) {
-//     return `This action updates a #${id} worker`;
-//   }
+    return worker;
+  }
 
-//   remove(id: number) {
-//     return `This action removes a #${id} worker`;
-//   }
-// }
+  findAll() {
+    return this.workerModel.find().populate('speciality_id');
+  }
+
+  findOne(id: number) {
+    return this.workerModel.findById(id);
+  }
+  update(id: string, updateAdminDto: UpdateWorkerDto) {
+    const updatedData = this.workerModel.findByIdAndUpdate(id, updateAdminDto);
+
+    console.log(updatedData);
+    return updatedData;
+  }
+
+  remove(id: number) {
+    return this.workerModel.deleteOne({ _id: id });
+  }
+}
