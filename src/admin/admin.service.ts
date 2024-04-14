@@ -163,6 +163,7 @@ export class AdminService {
       adminData: updateAdmin,
       tokens,
     };
+    console.log('bekzod');
     return response;
   }
 
