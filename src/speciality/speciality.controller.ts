@@ -27,7 +27,7 @@ export class SpecialityController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.specialityService.findOne(+id);
+    return this.specialityService.findOne(id);
   }
 
   @Patch(':id')
@@ -40,6 +40,6 @@ export class SpecialityController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.specialityService.remove(+id);
+    return this.specialityService.remove(id);
   }
 }

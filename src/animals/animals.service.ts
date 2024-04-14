@@ -7,26 +7,29 @@ import { Animal } from './schemas/animal.schemas';
 
 @Injectable()
 export class AnimalsService {
-  constructor(
-    @InjectModel(Animal.name) private animalsModel: Model<Animal>,
-  ) {}
+  constructor(@InjectModel(Animal.name) private animalsModel: Model<Animal>) {}
   create(createAnimalDto: CreateAnimalDto) {
     return this.animalsModel.create(createAnimalDto);
   }
 
   findAll() {
-    return `This action returns all animals`;
+    return this.animalsModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} animal`;
+  findOne(id: string) {
+    return this.animalsModel.findById(id);
   }
 
-  update(id: number, updateAnimalDto: UpdateAnimalDto) {
-    return `This action updates a #${id} animal`;
+  update(id: string, updateAnimalDto: UpdateAnimalDto) {
+    const updatedData = this.animalsModel.findByIdAndUpdate(
+      id,
+      updateAnimalDto,
+    );
+
+    return updatedData;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} animal`;
   }
 }

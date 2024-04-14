@@ -22,7 +22,7 @@ export class AnimalTypeService {
     return this.animalTypeModel.findById(id);
   }
 
-  update(id: number, updateAnimalTypeDto: UpdateAnimalTypeDto) {
+  update(id: string, updateAnimalTypeDto: UpdateAnimalTypeDto) {
     const updatedData = this.animalTypeModel.findByIdAndUpdate(
       id,
       updateAnimalTypeDto,
@@ -31,7 +31,7 @@ export class AnimalTypeService {
     return updatedData;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.animalTypeModel.deleteOne({ _id: id });
   }
 }

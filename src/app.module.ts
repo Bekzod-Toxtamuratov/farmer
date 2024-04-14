@@ -9,6 +9,8 @@ import { WorkersModule } from './workers/workers.module';
 // import { WorkersModule } from './workers/workers.module';
 import { AnimalTypeModule } from './animal_type/animal_type.module';
 import { AnimalsModule } from './animals/animals.module';
+import { VaccineModule } from './vaccine/vaccine.module';
+import { VaccationHistoryModule } from './vaccation_history/vaccation_history.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { AnimalsModule } from './animals/animals.module';
     WorkersModule,
     AnimalTypeModule,
     AnimalsModule,
+    VaccineModule,
+    VaccationHistoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

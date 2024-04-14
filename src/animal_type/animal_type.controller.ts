@@ -19,27 +19,23 @@ export class AnimalTypeController {
   create(@Body() createAnimalTypeDto: CreateAnimalTypeDto) {
     return this.animalTypeService.create(createAnimalTypeDto);
   }
-
   @Get()
   findAll() {
     return this.animalTypeService.findAll();
   }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.animalTypeService.findOne(id);
   }
-
   @Patch(':id')
   update(
     @Param('id') id: string,
     @Body() updateAnimalTypeDto: UpdateAnimalTypeDto,
   ) {
-    return this.animalTypeService.update(+id, updateAnimalTypeDto);
+    return this.animalTypeService.update(id, updateAnimalTypeDto);
   }
-
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.animalTypeService.remove(+id);
+    return this.animalTypeService.remove(id);
   }
 }

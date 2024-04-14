@@ -1,12 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
-
 export type Document = HydratedDocument<Animal>;
-
 @Schema({ versionKey: false })
 export class Animal {
-  @Prop({ required: true })
-  animal_type_id: string;
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Animal',
+  })
+  animal_type_id: Animal;
 
   @Prop()
   photos: string;

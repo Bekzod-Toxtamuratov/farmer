@@ -36,7 +36,6 @@ export class WorkersService {
   }
   update(id: string, updateAdminDto: UpdateWorkerDto) {
     const updatedData = this.workerModel.findByIdAndUpdate(id, updateAdminDto);
-
     console.log(updatedData);
     return updatedData;
   }

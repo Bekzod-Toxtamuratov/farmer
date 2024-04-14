@@ -19,18 +19,16 @@ export class SpecialityService {
     return this.specModel.find();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.specModel.findById(id);
   }
 
   update(id: string, updateAdminDto: UpdateSpecialityDto) {
     const updatedData = this.specModel.findByIdAndUpdate(id, updateAdminDto);
-
-    console.log(updatedData);
     return updatedData;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.specModel.deleteOne({ _id: id });
   }
 }
