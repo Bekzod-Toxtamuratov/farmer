@@ -31,7 +31,7 @@ export class WorkersService {
     return this.workerModel.find().populate('speciality_id');
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.workerModel.findById(id);
   }
   update(id: string, updateAdminDto: UpdateWorkerDto) {
@@ -41,7 +41,7 @@ export class WorkersService {
     return updatedData;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.workerModel.deleteOne({ _id: id });
   }
 }

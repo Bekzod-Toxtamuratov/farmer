@@ -7,6 +7,8 @@ import { AdminModule } from './admin/admin.module';
 import { SpecialityModule } from './speciality/speciality.module';
 import { WorkersModule } from './workers/workers.module';
 // import { WorkersModule } from './workers/workers.module';
+import { AnimalTypeModule } from './animal_type/animal_type.module';
+import { AnimalsModule } from './animals/animals.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { WorkersModule } from './workers/workers.module';
     AdminModule,
     SpecialityModule,
     WorkersModule,
+    AnimalTypeModule,
+    AnimalsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

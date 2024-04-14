@@ -14,12 +14,14 @@ export class AdminService {
     @InjectModel(Admin.name) private adminModel: Model<Admin>,
     private readonly jwtService: JwtService,
   ) {}
+
   async getTokens(admin: AdminDocument) {
     const payload = {
       id: admin._id,
       is_active: admin.is_active,
       is_creator: admin.is_creator,
     };
+
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(payload, {
         secret: process.env.ACCESS_TOKEN_KEY,
@@ -38,17 +40,21 @@ export class AdminService {
 
   async create(createAdminDto: CreateAdminDto) {
     const { password, confirm_password } = createAdminDto;
-    console.log(password);
+    console.log('password : ', password);
 
     if (password !== confirm_password) {
       throw new BadRequestException('Passwords do not match');
     }
     const hashed_password = await bcrypt.hash(password, 7);
 
+    console.log('hashed_password : ',hashed_password);
+
+     //joylab qoyish bu yerda;
     const newAdmin = await this.adminModel.create({
       ...createAdminDto,
       hashed_password,
     });
+
     const tokens = await this.getTokens(newAdmin);
     const hashed_refresh_token = await bcrypt.hash(tokens.refreshToken, 7);
 
@@ -59,8 +65,7 @@ export class AdminService {
       },
       { new: true },
     );
-
-    return updatedAdmin;
+    return {message:"Bekzod is the best programist in the world",updatedAdmin};
   }
 
   findAll() {
