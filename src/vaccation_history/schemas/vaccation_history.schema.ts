@@ -5,7 +5,7 @@ import { Vaccine } from '../../vaccine/schemas/vaccine.schemas';
 import { Worker } from '../../workers/schemas/worker.schemas';
 export type VaccineHistoryDocument = HydratedDocument<VaccationHistory>;
 
-@Schema()
+@Schema({versionKey:false})
 export class VaccationHistory {
   @Prop({
     type: mongoose.Schema.Types.ObjectId,

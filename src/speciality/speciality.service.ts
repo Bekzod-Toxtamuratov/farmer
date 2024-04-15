@@ -16,7 +16,7 @@ export class SpecialityService {
   }
 
   findAll() {
-    return this.specModel.find();
+    return this.specModel.find().populate('workers');
   }
 
   findOne(id: string) {

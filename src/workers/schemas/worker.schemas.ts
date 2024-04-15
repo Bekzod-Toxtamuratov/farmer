@@ -29,6 +29,9 @@ export class Worker {
 
   @Prop()
   token: string;
+
+  @Prop({ default: true })
+  is_active: boolean;
 }
 
 export const WorkerSchema = SchemaFactory.createForClass(Worker);

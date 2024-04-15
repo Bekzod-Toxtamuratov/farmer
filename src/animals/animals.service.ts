@@ -13,8 +13,26 @@ export class AnimalsService {
   }
 
   findAll() {
-    return this.animalsModel.find();
+    return this.animalsModel
+      .find()
+      .populate('meat_productions')
+      .populate('fiberProductions')
+      .populate('milkProduct')
+      .populate('record_of_ilnesS');
+    // return this.specModel.find().populate('workers');
+    //
   }
+  /* async function findAll() {
+  try {
+    const animals = await this.animalsModel.find().populate('meat_productions', 'fiberProductions');
+    return animals;
+  } catch (error) {
+    // Handle error
+    console.error(error);
+    throw error;
+  }
+}
+ */
 
   findOne(id: string) {
     return this.animalsModel.findById(id);
@@ -30,6 +48,6 @@ export class AnimalsService {
   }
 
   remove(id: string) {
-    return `This action removes a #${id} animal`;
+    return this.animalsModel.deleteOne({ _id: id });
   }
 }

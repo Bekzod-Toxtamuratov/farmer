@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 export type VaccineDocument = HydratedDocument<Vaccine>;
 
-@Schema()
+@Schema({versionKey:false})
 export class Vaccine {
   @Prop()
   name: string;
