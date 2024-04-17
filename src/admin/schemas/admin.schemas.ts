@@ -32,5 +32,4 @@ export class Admin {
   @Prop()
   description: string;
 }
-
 export const AdminSchema = SchemaFactory.createForClass(Admin);

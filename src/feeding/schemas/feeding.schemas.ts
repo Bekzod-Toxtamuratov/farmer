@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
+import { RecordsOfFeeding } from '../../records_of_feeding/schemas/records_of_feeding.schema';
 export type Document = HydratedDocument<Feeding>;
 @Schema({ versionKey: false })
 export class Feeding {
@@ -24,19 +25,8 @@ export class Feeding {
   })
   worker_id: number;
 
-  //   @Prop({ type: [{ type: mongoose.Schema.ObjectId, ref: 'FiberProduction' }] })
-  //   fiberProductions: FiberProduction[];
-
-  //   @Prop({ type: [{ type: mongoose.Schema.ObjectId, ref: 'MeatProduction' }] })
-  //   meat_productions: MeatProduction[];
-
-  //   // milkProduct
-
-  //   @Prop({ type: [{ type: mongoose.Schema.ObjectId, ref: 'MilkProduction' }] })
-  //   milkProduct: MilkProduction[];
-
-  //   @Prop({ type: [{ type: mongoose.Schema.ObjectId, ref: 'RecordOfIlness' }] })
-  //   record_of_ilnesS: RecordOfIlness[];
+  @Prop({ type: [{ type: mongoose.Schema.ObjectId, ref: 'RecordsOfFeeding' }] })
+  record_of_feeding: RecordsOfFeeding[];
 }
 
 export const FeedingSchema = SchemaFactory.createForClass(Feeding);
