@@ -39,7 +39,9 @@ export class MeatProductionService {
   }
 
   findAll() {
-    return this.MeatProdcutionModel.find().populate('animal_id');
+    return this.MeatProdcutionModel.find()
+      .populate('animal_id')
+     
   }
 
   findOne(id: string) {

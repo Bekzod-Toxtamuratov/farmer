@@ -18,8 +18,8 @@ export class RecordOfIlnessService {
 
   async create(createRecordOfIlnessDto: CreateRecordOfIlnessDto) {
     const { animal_id, worker_id } = createRecordOfIlnessDto;
-    const animal = await this.AnimalModel.findById(animal_id);
 
+    const animal = await this.AnimalModel.findById(animal_id);
     const worker = await this.workerModel.findById(worker_id);
 
     console.log('animal ', animal);
@@ -28,9 +28,9 @@ export class RecordOfIlnessService {
       throw new BadRequestException("Bunday aniamal_id yo'q ");
     }
 
-     if (!worker) {
-       throw new BadRequestException("Bunday worker_id yo'q ");
-     }
+    if (!worker) {
+      throw new BadRequestException("Bunday worker_id yo'q ");
+    }
     const recordOFIlness = await this.RecordOfIlnessModel.create(
       createRecordOfIlnessDto,
     );

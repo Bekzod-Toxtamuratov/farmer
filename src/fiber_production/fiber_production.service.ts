@@ -36,8 +36,14 @@ export class FiberProductionService {
     return fiber_production1;
   }
 
+  // findAll() {
+  //   return this.FiberProductionModel.find().populate('animal_id');
+  // }
   findAll() {
-    return this.FiberProductionModel.find().populate('animal_id');
+    return this.FiberProductionModel.find().populate({
+      path: 'animal_id',
+      select: 'animal_type_id photos unique_id', // Specify fields you want to include
+    });
   }
 
   findOne(id: string) {

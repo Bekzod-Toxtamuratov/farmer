@@ -2,14 +2,14 @@ import { Module } from '@nestjs/common';
 import { AnimalsService } from './animals.service';
 import { AnimalsController } from './animals.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Animal, AnimalTypeSchema } from './schemas/animal.schemas';
+import { Animal, AnimalSchema } from './schemas/animal.schemas';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       {
         name: Animal.name,
-        schema: AnimalTypeSchema,
+        schema: AnimalSchema,
       },
     ]),
   ],
