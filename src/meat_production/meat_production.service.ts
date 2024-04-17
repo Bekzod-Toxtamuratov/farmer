@@ -38,10 +38,15 @@ export class MeatProductionService {
     return meat_production1;
   }
 
+  // findAll() {
+  //   return this.MeatProdcutionModel.find()
+  //     .populate('animal_id')
+  // }
   findAll() {
-    return this.MeatProdcutionModel.find()
-      .populate('animal_id')
-     
+    return this.MeatProdcutionModel.find().populate({
+      path: 'animal_id',
+      select: 'animal_type_id photos unique_id', // Specify fields you want to include
+    });
   }
 
   findOne(id: string) {

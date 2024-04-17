@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 export class CreateInfoDto {
   weight: number;
   color: string;
@@ -5,7 +7,7 @@ export class CreateInfoDto {
   breed: string;
   gender: string;
   birth_or_asquistion: string;
-  block_id: number;
+  block_id: mongoose.Schema.Types.ObjectId;
   animal_id: number;
   parent_id: number;
 }

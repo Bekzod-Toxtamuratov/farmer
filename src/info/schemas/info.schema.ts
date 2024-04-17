@@ -1,7 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument } from 'mongoose';
+import { Block } from '../../blocks/schemas/block.schema';
 export type InfoDocument = HydratedDocument<Info>;
-@Schema({versionKey: false})
+@Schema({ versionKey: false })
 export class Info {
   @Prop()
   weight: number;
@@ -21,8 +22,11 @@ export class Info {
   @Prop()
   birth_or_asquistion: string;
 
-  @Prop()
-  block_id: number;
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Block',
+  })
+  block_id: Block;
 
   @Prop()
   animal_id: number;

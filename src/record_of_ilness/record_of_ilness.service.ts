@@ -41,8 +41,14 @@ export class RecordOfIlnessService {
     return recordOFIlness;
   }
 
+  // findAll() {
+  //   return this.RecordOfIlnessModel.find().populate('animal_id');
+  // }
   findAll() {
-    return this.RecordOfIlnessModel.find().populate('animal_id');
+    return this.RecordOfIlnessModel.find().populate({
+      path: 'animal_id',
+      select: '', // Specify fields you want to include
+    });
   }
 
   findOne(id: string) {

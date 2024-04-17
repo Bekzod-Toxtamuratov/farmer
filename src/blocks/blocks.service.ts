@@ -14,7 +14,7 @@ export class BlocksService {
   }
 
   findAll() {
-    return this.bloclModel.find();
+    return this.bloclModel.find().populate('Infos');
   }
 
   findOne(id: string) {

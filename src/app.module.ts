@@ -15,7 +15,7 @@ import { RecordOfIlnessModule } from './record_of_ilness/record_of_ilness.module
 import { FeedingModule } from './feeding/feeding.module';
 import { InfoModule } from './info/info.module';
 import { BlocksModule } from './blocks/blocks.module';
-import { RecordsOfFeedingModule } from './records_of_feeding/records_of_feeding.module';
+import { RecordOfFeedingModule } from './record_of_feeding/record_of_feeding.module';
 
 @Module({
   imports: [
@@ -35,7 +35,7 @@ import { RecordsOfFeedingModule } from './records_of_feeding/records_of_feeding.
     FeedingModule,
     InfoModule,
     BlocksModule,
-    RecordsOfFeedingModule,
+    RecordOfFeedingModule,
   ],
   controllers: [],
   providers: [],
