@@ -1,9 +1,9 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
-import * as cookieParser from 'cookie-parser';
+import { ValidationPipe } from '@nestjs/common'
+import { NestFactory } from '@nestjs/core'
+import * as cookieParser from 'cookie-parser'
+import { AppModule } from './app.module'
 async function start() {
-  const PORT = process.env.PORT || 3333;
+  const PORT = 5000 || 3333;
   console.log(PORT);
 
   const app = await NestFactory.create(AppModule);
